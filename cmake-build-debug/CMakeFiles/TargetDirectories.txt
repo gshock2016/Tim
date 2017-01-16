@@ -1,0 +1,3 @@
+/Users/han/GitHub/TIM/cmake-build-debug/CMakeFiles/edit_cache.dir
+/Users/han/GitHub/TIM/cmake-build-debug/CMakeFiles/rebuild_cache.dir
+/Users/han/GitHub/TIM/cmake-build-debug/CMakeFiles/TIM__release_v1_2.dir
