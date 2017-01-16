@@ -54,6 +54,9 @@ class InfGraph:public Graph
         //VV hyperG;
         vector<vector<int>> hyperGT;
 
+        vector<vector<int>> infmatrix;
+        vector<vector<int>> infAdjList;
+
         InfGraph(string folder, string graph_file):Graph(folder, graph_file){
             hyperG.clear();
             for(int i=0; i<n; i++)

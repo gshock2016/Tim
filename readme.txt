@@ -1,4 +1,4 @@
-Compile:
+./timCompile:
     using make to compile
     "gcc 4.7.2" preferred
 

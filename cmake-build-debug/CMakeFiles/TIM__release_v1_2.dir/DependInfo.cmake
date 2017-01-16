@@ -5,9 +5,9 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_C
-  "/Users/han/GitHub/TIM/src/sfmt/SFMT.c" "/Users/han/GitHub/TIM/cmake-build-debug/CMakeFiles/TIM__release_v1_2.dir/src/sfmt/SFMT.c.o"
-  "/Users/han/GitHub/TIM/src/sfmt/a.c" "/Users/han/GitHub/TIM/cmake-build-debug/CMakeFiles/TIM__release_v1_2.dir/src/sfmt/a.c.o"
-  "/Users/han/GitHub/TIM/src/sfmt/test.c" "/Users/han/GitHub/TIM/cmake-build-debug/CMakeFiles/TIM__release_v1_2.dir/src/sfmt/test.c.o"
+  "/Users/han/GitHub/gshock/Tim/src/sfmt/SFMT.c" "/Users/han/GitHub/gshock/Tim/cmake-build-debug/CMakeFiles/TIM__release_v1_2.dir/src/sfmt/SFMT.c.o"
+  "/Users/han/GitHub/gshock/Tim/src/sfmt/a.c" "/Users/han/GitHub/gshock/Tim/cmake-build-debug/CMakeFiles/TIM__release_v1_2.dir/src/sfmt/a.c.o"
+  "/Users/han/GitHub/gshock/Tim/src/sfmt/test.c" "/Users/han/GitHub/gshock/Tim/cmake-build-debug/CMakeFiles/TIM__release_v1_2.dir/src/sfmt/test.c.o"
   )
 set(CMAKE_C_COMPILER_ID "AppleClang")
 
@@ -15,8 +15,8 @@ set(CMAKE_C_COMPILER_ID "AppleClang")
 set(CMAKE_C_TARGET_INCLUDE_PATH
   )
 set(CMAKE_DEPENDS_CHECK_CXX
-  "/Users/han/GitHub/TIM/src/sfmt/a.cpp" "/Users/han/GitHub/TIM/cmake-build-debug/CMakeFiles/TIM__release_v1_2.dir/src/sfmt/a.cpp.o"
-  "/Users/han/GitHub/TIM/src/tim.cpp" "/Users/han/GitHub/TIM/cmake-build-debug/CMakeFiles/TIM__release_v1_2.dir/src/tim.cpp.o"
+  "/Users/han/GitHub/gshock/Tim/src/sfmt/a.cpp" "/Users/han/GitHub/gshock/Tim/cmake-build-debug/CMakeFiles/TIM__release_v1_2.dir/src/sfmt/a.cpp.o"
+  "/Users/han/GitHub/gshock/Tim/src/tim.cpp" "/Users/han/GitHub/gshock/Tim/cmake-build-debug/CMakeFiles/TIM__release_v1_2.dir/src/tim.cpp.o"
   )
 set(CMAKE_CXX_COMPILER_ID "AppleClang")
 

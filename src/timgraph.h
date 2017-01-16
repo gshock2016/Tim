@@ -84,5 +84,96 @@ class TimGraph: public InfGraph
             disp_mem_usage("");
         }
 
+        void getRRsets(InfGraph &g, double epsilon, int threshold){
+
+            int64 R = (8+2 * epsilon) * ( log(n) + log(2) +  n * logcnk(n, k) ) / ( epsilon * epsilon * opt);
+            BuildHypergraphR(R);
+
+            cout<<"R= "<<R<<endl;
+
+            ofstream myfile;
+            myfile.open ("./output/rrset.csv");
+
+            int nodeID;
+
+            vector<int> infValues;
+            for(int i =0; i < g.n; i++){
+                infValues.push_back(0);
+            }
+/*
+ * RRset ID start from 0
+ * Output inlfuence matrix, infadjlist, rrsets
+ * Example:
+ * RRset:
+ * -------------------------------------------------------
+ * seed node | sequence of influenced node (BFS sequence)
+ *     2     | 1, 3,
+ *     1     | 2, 3
+ *     3     | 2,
+ * -------------------------------------------------------
+ * InfValue:
+ * -------------------------------------------------------
+ * node ID   | influence value (number of rrsets it belongs to)
+ *     1     | 2
+ *     2     | 3
+ *     3     | 3
+ * -------------------------------------------------------
+ * InfAdjList:
+ * -------------------------------------------------------
+ * node ID   | rrsets the node belongs to
+ *     1     | 1, 2
+ *     2     | 1, 2, 3
+ *     3     | 1, 2, 3
+ * -------------------------------------------------------
+ * InfMatrix
+ * -------------------------------------------------------
+ * node ID   | if node i belong to rrset j, then (i, j) = 1, otherwise (i,j)=0
+ *     1     | 1, 1, 0
+ *     2     | 1, 1, 1
+ *     3     | 1, 1, 1
+ * -------------------------------------------------------
+ */
+            for (int i = 0; i < (int) g.hyperGT.size();i++){
+                int rrsetID = i;
+                for(int j = 0; j < (int) g.hyperGT[i].size(); j++){
+//                    cout<<g.hyperGT[i][j]<<", ";
+                    nodeID = g.hyperGT[i][j];
+                    myfile <<nodeID<<",";
+                    g.infAdjList[nodeID].push_back(rrsetID);
+                    g.infmatrix[nodeID][rrsetID]=1;
+                    infValues[nodeID] = infValues[nodeID] + 1;
+                }
+                myfile << "\n";
+//                cout<<endl;
+            }
+            myfile.close();
+
+            ofstream myfile2;
+            myfile2.open("./output/infvalue.csv");
+            ofstream myfile3;
+            myfile3.open("./output/infmatrix.csv");
+            ofstream myfile4;
+            myfile4.open("./output/infadjlist.csv");
+            for (int i = 0; i < g.n; i++){
+//                myfile2<<i<<","<<infValues[i]<< "\n";
+                if(infValues[i] > threshold) {
+                    myfile2<<i<<","<<infValues[i]<< "\n";
+                    for (int j = 0; j < (int) g.infmatrix[i].size(); j++) {
+                        myfile3 << g.infmatrix[i][j] << ",";
+                    }
+                    for (int j = 0; j < g.infAdjList[i].size(); j++) {
+//                        cout<<(int) g.infAdjList[i].size()<<endl;
+                        myfile4 << g.infAdjList[i][j] << ",";
+                    }
+                    myfile3 << "\n";
+                    myfile4 << "\n";
+                }
+
+            }
+            myfile2.close();
+            myfile3.close();
+            myfile4.close();
+    }
+
 };
 
