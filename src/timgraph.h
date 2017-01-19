@@ -165,9 +165,9 @@ class TimGraph: public InfGraph
 //                myfile2<<i<<","<<infValues[i]<< "\n";
                 if(infValues[i] > threshold) {
                     myfile2<<i<<","<<n * infValues[i] /hyperId<< "\n";
-                    for (int j = 0; j < (int) infmatrix[i].size(); j++) {
-                        myfile3 << infmatrix[i][j] << ",";
-                    }
+//                    for (int j = 0; j < (int) infmatrix[i].size(); j++) {
+//                        myfile3 << infmatrix[i][j] << ",";
+//                    }
                     for (int j = 0; j < infAdjList[i].size(); j++) {
 //                        cout<<(int) g.infAdjList[i].size()<<endl;
                         myfile4 << infAdjList[i][j] << ",";
