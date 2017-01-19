@@ -76,8 +76,16 @@ class InfGraph:public Graph
             for(int i=0; i<n; i++)
                 hyperG.push_back(vector<int>());
             hyperGT.clear();
+
             while((int)hyperGT.size() <= R)
                 hyperGT.push_back( vector<int>() );
+
+            for (int i = 0; i < n; i++){
+                infmatrix.push_back(vector<int>());
+                infAdjList.push_back(vector<int>());
+//                for(int j =0; j < R; j++)
+//                    infmatrix[i].push_back(0);
+            }
 
             for(int i=0; i<R; i++){
                 BuildHypergraphNode(sfmt_genrand_uint32(&sfmtSeed)%n, i, true);

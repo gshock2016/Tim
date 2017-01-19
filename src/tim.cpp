@@ -27,6 +27,7 @@ void run(TimGraph & m, string dataset, int k, double epsilon, string model ){
         cout<< item << " ";
     cout<<endl;
     cout<<"Estimated Influence: " << m.InfluenceHyperGraph() << endl;
+//    m.getRRsets(0);
     Counter::show();
 }
 void parseArg(int argn, char ** argv)

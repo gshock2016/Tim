@@ -1,3 +1,5 @@
+#include <fstream>
+
 class TimGraph: public InfGraph
 {
     public:
@@ -59,7 +61,9 @@ class TimGraph: public InfGraph
             Timer t(3, "step3");
             ASSERT(opt > 0);
             int64 R = (8+2 * epsilon) * ( log(n) + log(2) +  n * logcnk(n, k) ) / ( epsilon * epsilon * opt);
+            cout<<"build hypergraph"<<endl;
             BuildHypergraphR(R);
+            cout<<"R = "<<R<<endl;
             BuildSeedSet();
         }
         void EstimateOPT(double epsilon){
@@ -73,31 +77,33 @@ class TimGraph: public InfGraph
             // Refine KPT
             double eps_prime;
             eps_prime=5*pow(sqr(epsilon)/(k+1), 1.0/3.0);
+            cout<<"refindkpt"<<endl;
             RefindKPT(eps_prime, kpt_star);
+            cout<<"buildsedset"<<endl;
             BuildSeedSet();
+            cout<<"influence hypergraph"<<endl;
             double kpt=InfluenceHyperGraph();
             kpt/=1+eps_prime;
             double kpt_plus = max(kpt, kpt_star);
-
+            cout<<"node selection"<<endl;
             //Node Selection
             NodeSelection(epsilon, kpt_plus);
             disp_mem_usage("");
         }
 
-        void getRRsets(InfGraph &g, double epsilon, int threshold){
+        void getRRsets(int threshold){
 
-            int64 R = (8+2 * epsilon) * ( log(n) + log(2) +  n * logcnk(n, k) ) / ( epsilon * epsilon * opt);
-            BuildHypergraphR(R);
-
-            cout<<"R= "<<R<<endl;
+//            int64 R = (8+2 * epsilon) * ( log(n) + log(2) +  n * logcnk(n, k) ) / ( epsilon * epsilon * opt);
+//            BuildHypergraphR(R);
+//
+//            cout<<"R= "<<R<<endl;
 
             ofstream myfile;
             myfile.open ("./output/rrset.csv");
-
             int nodeID;
 
             vector<int> infValues;
-            for(int i =0; i < g.n; i++){
+            for(int i =0; i < n; i++){
                 infValues.push_back(0);
             }
 /*
@@ -133,14 +139,15 @@ class TimGraph: public InfGraph
  *     3     | 1, 1, 1
  * -------------------------------------------------------
  */
-            for (int i = 0; i < (int) g.hyperGT.size();i++){
+            for (int i = 0; i < (int) hyperGT.size();i++){
                 int rrsetID = i;
-                for(int j = 0; j < (int) g.hyperGT[i].size(); j++){
+                for(int j = 0; j < (int) hyperGT[i].size(); j++){
 //                    cout<<g.hyperGT[i][j]<<", ";
-                    nodeID = g.hyperGT[i][j];
+                    nodeID = hyperGT[i][j];
                     myfile <<nodeID<<",";
-                    g.infAdjList[nodeID].push_back(rrsetID);
-                    g.infmatrix[nodeID][rrsetID]=1;
+//                    cout<<"hello"<<endl;
+                    infAdjList[nodeID].push_back(rrsetID);
+                    infmatrix[nodeID][rrsetID]=1;
                     infValues[nodeID] = infValues[nodeID] + 1;
                 }
                 myfile << "\n";
@@ -154,16 +161,16 @@ class TimGraph: public InfGraph
             myfile3.open("./output/infmatrix.csv");
             ofstream myfile4;
             myfile4.open("./output/infadjlist.csv");
-            for (int i = 0; i < g.n; i++){
+            for (int i = 0; i < n; i++){
 //                myfile2<<i<<","<<infValues[i]<< "\n";
                 if(infValues[i] > threshold) {
-                    myfile2<<i<<","<<infValues[i]<< "\n";
-                    for (int j = 0; j < (int) g.infmatrix[i].size(); j++) {
-                        myfile3 << g.infmatrix[i][j] << ",";
+                    myfile2<<i<<","<<n * infValues[i] /hyperId<< "\n";
+                    for (int j = 0; j < (int) infmatrix[i].size(); j++) {
+                        myfile3 << infmatrix[i][j] << ",";
                     }
-                    for (int j = 0; j < g.infAdjList[i].size(); j++) {
+                    for (int j = 0; j < infAdjList[i].size(); j++) {
 //                        cout<<(int) g.infAdjList[i].size()<<endl;
-                        myfile4 << g.infAdjList[i][j] << ",";
+                        myfile4 << infAdjList[i][j] << ",";
                     }
                     myfile3 << "\n";
                     myfile4 << "\n";
