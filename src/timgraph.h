@@ -45,7 +45,8 @@ class TimGraph: public InfGraph
             Timer t(2, "step2" );
             ASSERT(ept > 0);
             int64 R = (2 + epsilon) * ( n * log(n) ) / ( epsilon * epsilon * ept);
-            BuildHypergraphR(R);
+//            BuildHypergraphR(R);
+            BuildHypergraphR(10);
         }
         double logcnk(int n, int k){
             double ans=0;
@@ -62,7 +63,8 @@ class TimGraph: public InfGraph
             ASSERT(opt > 0);
             int64 R = (8+2 * epsilon) * ( log(n) + log(2) +  n * logcnk(n, k) ) / ( epsilon * epsilon * opt);
             cout<<"build hypergraph"<<endl;
-            BuildHypergraphR(R);
+//            BuildHypergraphR(R);
+            BuildHypergraphR(10);
             cout<<"R = "<<R<<endl;
             BuildSeedSet();
         }
@@ -147,7 +149,7 @@ class TimGraph: public InfGraph
                     myfile <<nodeID<<",";
 //                    cout<<"hello"<<endl;
                     infAdjList[nodeID].push_back(rrsetID);
-                    infmatrix[nodeID][rrsetID]=1;
+//                    infmatrix[nodeID][rrsetID]=1;
                     infValues[nodeID] = infValues[nodeID] + 1;
                 }
                 myfile << "\n";
@@ -168,10 +170,29 @@ class TimGraph: public InfGraph
 //                    for (int j = 0; j < (int) infmatrix[i].size(); j++) {
 //                        myfile3 << infmatrix[i][j] << ",";
 //                    }
+                    int preRRid = 0;
+                    int curRRid = 0;
+                    int R = hyperGT.size()-1;
+                    cout<<"R = "<<R<<endl;
                     for (int j = 0; j < infAdjList[i].size(); j++) {
 //                        cout<<(int) g.infAdjList[i].size()<<endl;
                         myfile4 << infAdjList[i][j] << ",";
+                        curRRid = infAdjList[i][j];
+                        for(k = 0 ; k < curRRid - preRRid; k++){
+                            myfile3 << 0 <<",";
+                        }
+                        myfile3 << 1 <<",";
+                        preRRid = curRRid+1;
+                        cout<<"predid = "<<preRRid<<endl;
                     }
+                    if(preRRid < R){
+                        curRRid = R;
+                        for(k = 0; k < curRRid - preRRid; k++){
+                            myfile3 << 0 <<",";
+                        }
+                    }
+
+
                     myfile3 << "\n";
                     myfile4 << "\n";
                 }

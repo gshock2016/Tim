@@ -1,3 +1,4 @@
+#include <ctime> // Needed for the true randomization
 
 class VV
 {
@@ -54,15 +55,20 @@ class InfGraph:public Graph
         //VV hyperG;
         vector<vector<int>> hyperGT;
 
-        vector<vector<int>> infmatrix;
+//        vector<vector<int>> infmatrix;
         vector<vector<int>> infAdjList;
 
         InfGraph(string folder, string graph_file):Graph(folder, graph_file){
             hyperG.clear();
             for(int i=0; i<n; i++)
                 hyperG.push_back(vector<int>());
-            for(int i=0; i<12; i++)
-                sfmt_init_gen_rand(&sfmtSeed, i+1234);
+//            for(int i=0; i<12; i++)
+//                sfmt_init_gen_rand(&sfmtSeed, i+1234);
+            srand( time(0)); // This will ensure a really randomized number by help of time.
+
+            int xRan=rand()%15+1; // Randomizing the number between 1-15.
+//        sfmt_init_gen_rand(&sfmtSeed , 95082);
+            sfmt_init_gen_rand(&sfmtSeed , xRan);
         }
 
         enum ProbModel {TR, WC, TR001};
@@ -81,8 +87,9 @@ class InfGraph:public Graph
                 hyperGT.push_back( vector<int>() );
 
             for (int i = 0; i < n; i++){
-                infmatrix.push_back(vector<int>());
+//                infmatrix.push_back(vector<int>());
                 infAdjList.push_back(vector<int>());
+//-------------------------intialize infmatrix -------------------------------
 //                for(int j =0; j < R; j++)
 //                    infmatrix[i].push_back(0);
             }
