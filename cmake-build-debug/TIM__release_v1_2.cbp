@@ -82,6 +82,9 @@
 				</MakeCommands>
 			</Target>
 		</Build>
+		<Unit filename="/Users/han/GitHub/gshock/Tim/src/expon.h">
+			<Option target="TIM__release_v1_2"/>
+		</Unit>
 		<Unit filename="/Users/han/GitHub/gshock/Tim/src/graph.h">
 			<Option target="TIM__release_v1_2"/>
 		</Unit>

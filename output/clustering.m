@@ -2,8 +2,8 @@
 infV = csvread('infvalue.csv');
 
 sorted = sort(infV(:, 2));
-cdfplot(sorted);
-% plot(sorted);
+% cdfplot(sorted);
+plot(sorted);
 
 % dis=pdist(infM,'hamming');
 % sortedDis = sort(dis)

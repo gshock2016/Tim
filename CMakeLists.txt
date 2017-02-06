@@ -28,6 +28,6 @@ set(SOURCE_FILES
         src/infgraph.h
         src/memoryusage.h
         src/tim.cpp
-        src/timgraph.h)
+        src/timgraph.h src/expon.h)
 
 add_executable(TIM__release_v1_2 ${SOURCE_FILES})

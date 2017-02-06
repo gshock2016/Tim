@@ -1,4 +1,5 @@
 #include <ctime> // Needed for the true randomization
+#include "expon.h"
 
 class VV
 {
@@ -101,6 +102,7 @@ class InfGraph:public Graph
             for(int i=0; i<R; i++){
                 for(int t:hyperGT[i])
                 {
+                    //hyperG is the same as infadjlist
                     hyperG[t].push_back(i);
                     //hyperG.addElement(t, i);
                     totAddedElement++;
@@ -134,7 +136,9 @@ class InfGraph:public Graph
                     for(int j=0; j<(int)gT[i].size(); j++){
                         //int u=expand;
                         int v=gT[i][j];
+/*************************************visted edges***************************************************/
                         n_visit_edge++;
+
                         double randDouble=double(sfmt_genrand_uint32(&sfmtSeed))/double(RAND_MAX)/2;
                         if(randDouble > probT[i][j])
                             continue;
@@ -200,7 +204,8 @@ class InfGraph:public Graph
         deque<int> q;
         sfmt_t sfmtSeed;
         set<int> seedSet;
-        void BuildSeedSet() {
+
+        void BuildSeedSet(int isExpon) {
             vector< int > degree;
             vector< int> visit_local(hyperGT.size());
             //sort(ALL(degree));
@@ -214,10 +219,21 @@ class InfGraph:public Graph
             ASSERT(k > 0);
             ASSERT(k < (int)degree.size());
             for(int i=0; i<k; i++){
-                auto t=max_element(degree.begin(), degree.end());
-                int id=t-degree.begin();
+                int id = 0;
+                if (isExpon == 1) {
+                    id = expoMech(0.01, degree);
+                    cout<<"expon_"<<i<<" = "<<id<<","<<endl;
+                }
+                if(isExpon == 0){
+                    //Returns an iterator pointing to the element with the largest value in the range [first,last).
+                    auto t=max_element(degree.begin(), degree.end());
+                    // id is the index of the node with largest degree
+                    id = t-degree.begin();
+                    cout<<"greedy_"<<i<<" = "<<id<<","<<endl;
+                }
                 seedSet.insert(id);
                 degree[id]=0;
+                // t is the index of rrset
                 for(int t:hyperG[id]){
                     if(!visit_local[t]){
                         visit_local[t]=true;

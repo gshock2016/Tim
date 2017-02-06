@@ -8,7 +8,7 @@
 #include "memoryusage.h"
 #include "graph.h"
 
-void run(TimGraph & m, string dataset, int k, double epsilon, string model ){
+void run(TimGraph & m, string dataset, int k, double epsilon, string model, int isExpon ){
     cout << "dataste:" << dataset << " k:" << k << " epsilon:"<< epsilon <<   " model:" << model << endl;
     m.k=k;
     if(model=="IC")
@@ -19,7 +19,7 @@ void run(TimGraph & m, string dataset, int k, double epsilon, string model ){
         ASSERT(false);
 
     cout<<"Finish Read Graph, Start Influecne Maximization"<<endl;
-    m.EstimateOPT(epsilon);
+    m.EstimateOPT(epsilon, isExpon);
     cout<<"Time used: " << Timer::timeUsed[100]/TIMES_PER_SEC << "s" <<endl;
 
     cout<<"Selected k SeedSet: ";
@@ -27,8 +27,11 @@ void run(TimGraph & m, string dataset, int k, double epsilon, string model ){
         cout<< item << " ";
     cout<<endl;
     cout<<"Estimated Influence: " << m.InfluenceHyperGraph() << endl;
-    m.getRRsets(0);
     Counter::show();
+
+
+
+    m.getRRsets(0);
 }
 void parseArg(int argn, char ** argv)
 {
@@ -37,12 +40,14 @@ void parseArg(int argn, char ** argv)
     double epsilon=0;
     string model="";
     int k=0;
+    int isExpon =0;
 
     for(int i=0; i<argn; i++)
     {
         if(argv[i]==string("-dataset")) dataset=string(argv[i+1])+"/";
         if(argv[i]==string("-epsilon")) epsilon=atof(argv[i+1]);
         if(argv[i]==string("-k")) k=atoi(argv[i+1]);
+        if(argv[i]==string("-expon")) isExpon = atoi(argv[i+1]);
         if(argv[i]==string("-model")) {
             if(argv[i+1]==string("LT"))
             {
@@ -73,7 +78,7 @@ void parseArg(int argn, char ** argv)
         graph_file=dataset + "graph_lt.inf";
 
     TimGraph m(dataset, graph_file);
-    run(m, dataset, k ,  epsilon, model );
+    run(m, dataset, k ,  epsilon, model, isExpon);
 }
 
 
