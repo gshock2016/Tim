@@ -12,22 +12,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="23c2ec02-7377-4768-8f7e-8f3ea430e8f7" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/output/infmatrix.csv" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tim" afterPath="$PROJECT_DIR$/tim" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CMakeLists.txt" afterPath="$PROJECT_DIR$/CMakeLists.txt" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Makefile.cmake" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Makefile.cmake" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/clion-log.txt" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/clion-log.txt" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/cmake-build-debug/TIM__release_v1_2.cbp" afterPath="$PROJECT_DIR$/cmake-build-debug/TIM__release_v1_2.cbp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/nethept/attribute.txt" afterPath="$PROJECT_DIR$/nethept/attribute.txt" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/nethept/graph_ic.inf" afterPath="$PROJECT_DIR$/nethept/graph_ic.inf" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/output/clustering.m" afterPath="$PROJECT_DIR$/output/clustering.m" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/output/infadjlist.csv" afterPath="$PROJECT_DIR$/output/infadjlist.csv" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/output/infvalue.csv" afterPath="$PROJECT_DIR$/output/infvalue.csv" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/output/rrset.csv" afterPath="$PROJECT_DIR$/output/rrset.csv" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/infgraph.h" afterPath="$PROJECT_DIR$/src/infgraph.h" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/tim.cpp" afterPath="$PROJECT_DIR$/src/tim.cpp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/timgraph.h" afterPath="$PROJECT_DIR$/src/timgraph.h" />
     </list>
     <ignored path="$PROJECT_DIR$/cmake-build-debug/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -56,8 +41,8 @@
       <file leaf-file-name="graph.h" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/graph.h">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="472">
-              <caret line="65" column="34" lean-forward="false" selection-start-line="65" selection-start-column="34" selection-end-line="65" selection-end-column="34" />
+            <state relative-caret-position="-122">
+              <caret line="9" column="27" lean-forward="true" selection-start-line="9" selection-start-column="8" selection-end-line="9" selection-end-column="27" />
               <folding />
             </state>
           </provider>
@@ -76,8 +61,8 @@
       <file leaf-file-name="infgraph.h" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/infgraph.h">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2136">
-              <caret line="135" column="47" lean-forward="true" selection-start-line="135" selection-start-column="47" selection-end-line="135" selection-end-column="47" />
+            <state relative-caret-position="365">
+              <caret line="223" column="40" lean-forward="true" selection-start-line="223" selection-start-column="40" selection-end-line="223" selection-end-column="40" />
               <folding>
                 <element signature="e#0#53#0" expanded="true" />
               </folding>
@@ -98,7 +83,7 @@
       <file leaf-file-name="head.h" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/head.h">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-1982">
+            <state relative-caret-position="-1961">
               <caret line="236" column="0" lean-forward="true" selection-start-line="236" selection-start-column="0" selection-end-line="236" selection-end-column="0" />
               <folding />
             </state>
@@ -384,25 +369,25 @@
       <workItem from="1484973444138" duration="4892000" />
       <workItem from="1485025128921" duration="10089000" />
       <workItem from="1485750870870" duration="870000" />
-      <workItem from="1486224534355" duration="14315000" />
+      <workItem from="1486224534355" duration="16692000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="37901000" />
+    <option name="totallyTimeSpent" value="40278000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-1827" y="91" width="1723" height="1042" extended-state="0" />
-    <editor active="true" />
+    <editor active="false" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.11692127" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="CMake" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.11811927" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.11789474" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -422,7 +407,7 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
           <url>file://$PROJECT_DIR$/src/infgraph.h</url>
-          <line>111</line>
+          <line>121</line>
         </line-breakpoint>
       </breakpoints>
       <option name="time" value="1" />
@@ -701,26 +686,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/head.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1982">
-          <caret line="236" column="0" lean-forward="true" selection-start-line="236" selection-start-column="0" selection-end-line="236" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/expon.h">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="506">
           <caret line="25" column="30" lean-forward="true" selection-start-line="25" selection-start-column="30" selection-end-line="25" selection-end-column="30" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/graph.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="472">
-          <caret line="65" column="34" lean-forward="false" selection-start-line="65" selection-start-column="34" selection-end-line="65" selection-end-column="34" />
           <folding />
         </state>
       </provider>
@@ -741,10 +710,26 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/graph.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-122">
+          <caret line="9" column="27" lean-forward="true" selection-start-line="9" selection-start-column="8" selection-end-line="9" selection-end-column="27" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/head.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1961">
+          <caret line="236" column="0" lean-forward="true" selection-start-line="236" selection-start-column="0" selection-end-line="236" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/infgraph.h">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2136">
-          <caret line="135" column="47" lean-forward="true" selection-start-line="135" selection-start-column="47" selection-end-line="135" selection-end-column="47" />
+        <state relative-caret-position="365">
+          <caret line="223" column="40" lean-forward="true" selection-start-line="223" selection-start-column="40" selection-end-line="223" selection-end-column="40" />
           <folding>
             <element signature="e#0#53#0" expanded="true" />
           </folding>

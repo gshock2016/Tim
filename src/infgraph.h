@@ -59,6 +59,8 @@ class InfGraph:public Graph
 //        vector<vector<int>> infmatrix;
         vector<vector<int>> infAdjList;
 
+        vector<vector<int>> numVisted;
+
         InfGraph(string folder, string graph_file):Graph(folder, graph_file){
             hyperG.clear();
             for(int i=0; i<n; i++)
@@ -70,12 +72,20 @@ class InfGraph:public Graph
             int xRan=rand()%15+1; // Randomizing the number between 1-15.
 //        sfmt_init_gen_rand(&sfmtSeed , 95082);
             sfmt_init_gen_rand(&sfmtSeed , xRan);
+
+            numVisted = gT;
+            for(int i=0; i<n; i++){
+                for(int j=0; j<(int)numVisted[i].size(); j++){
+                    numVisted[i][j] = 0;
+                }
+            }
         }
 
         enum ProbModel {TR, WC, TR001};
         ProbModel probModel;
 
         void BuildHypergraphR(int64 R){
+
             hyperId=R;
             //for(int i=0; i<n; i++)
                 //hyperG[i].clear();
@@ -112,7 +122,7 @@ class InfGraph:public Graph
         }
 
         int BuildHypergraphNode(int uStart, int hyperiiid, bool addHyperEdge){
-            int n_visit_edge=1;
+                int n_visit_edge=1;
             if(addHyperEdge)
             {
                 ASSERT((int)hyperGT.size() > hyperiiid);
@@ -199,7 +209,99 @@ class InfGraph:public Graph
             return n_visit_edge;
         }
 
-        //return the number of edges visited
+
+    int newBuildHypergraphNode(int uStart, int hyperiiid, bool addHyperEdge){
+
+        int n_visit_edge=1;
+        if(addHyperEdge)
+        {
+            ASSERT((int)hyperGT.size() > hyperiiid);
+            hyperGT[hyperiiid].push_back(uStart);
+        }
+
+        int n_visit_mark=0;
+        //for(int i=0; i<12; i++) ASSERT((int)visit[i].size()==n);
+        //for(int i=0; i<12; i++) ASSERT((int)visit_mark[i].size()==n);
+        //hyperiiid ++;
+        q.clear();
+        q.push_back(uStart);
+        ASSERT(n_visit_mark < n);
+        visit_mark[n_visit_mark++]=uStart;
+        visit[uStart]=true;
+        while(!q.empty()) {
+            int expand=q.front();
+            q.pop_front();
+            if(influModel==IC){
+                int i=expand;
+                for(int j=0; j<(int)gT[i].size(); j++){
+                    //int u=expand;
+                    int v=gT[i][j];
+/*************************************visted edges***************************************************/
+                    n_visit_edge++;
+                    numVisted[i][j]++;
+
+                    double randDouble=double(sfmt_genrand_uint32(&sfmtSeed))/double(RAND_MAX)/2;
+                    if(randDouble > probT[i][j])
+                        continue;
+                    if(visit[v])
+                        continue;
+                    if(!visit[v])
+                    {
+                        ASSERT(n_visit_mark < n);
+                        visit_mark[n_visit_mark++]=v;
+                        visit[v]=true;
+                    }
+                    q.push_back(v);
+                    //#pragma omp  critical
+                    //if(0)
+                    if(addHyperEdge)
+                    {
+                        //hyperG[v].push_back(hyperiiid);
+                        ASSERT((int)hyperGT.size() > hyperiiid);
+                        hyperGT[hyperiiid].push_back(v);
+                    }
+                }
+            }
+            else if(influModel==LT){
+                if(gT[expand].size()==0)
+                    continue;
+                ASSERT(gT[expand].size()>0);
+                n_visit_edge+=gT[expand].size();
+                double randDouble=double(sfmt_genrand_uint32(&sfmtSeed))/double(RAND_MAX)/2;
+                for(int i=0; i<(int)gT[expand].size(); i++){
+                    ASSERT( i< (int)probT[expand].size());
+                    randDouble -= probT[expand][i];
+                    if(randDouble>0)
+                        continue;
+                    //int u=expand;
+                    int v=gT[expand][i];
+
+                    if(visit[v])
+                        break;
+                    if(!visit[v])
+                    {
+                        visit_mark[n_visit_mark++]=v;
+                        visit[v]=true;
+                    }
+                    q.push_back(v);
+                    if(addHyperEdge)
+                    {
+                        ASSERT((int)hyperGT.size() > hyperiiid);
+                        hyperGT[hyperiiid].push_back(v);
+                    }
+                    break;
+                }
+            }
+            else
+            ASSERT(false);
+        }
+        for(int i=0; i<n_visit_mark; i++)
+            visit[visit_mark[i]]=false;
+        return n_visit_edge;
+    }
+
+
+    //return the number of edges visited
         int64 hyperId = 0;
         deque<int> q;
         sfmt_t sfmtSeed;
