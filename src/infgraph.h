@@ -238,7 +238,7 @@ class InfGraph:public Graph
                     int v=gT[i][j];
 /*************************************visted edges***************************************************/
                     n_visit_edge++;
-                    numVisted[i][j]++;
+
 
                     double randDouble=double(sfmt_genrand_uint32(&sfmtSeed))/double(RAND_MAX)/2;
                     if(randDouble > probT[i][j])
@@ -250,6 +250,7 @@ class InfGraph:public Graph
                         ASSERT(n_visit_mark < n);
                         visit_mark[n_visit_mark++]=v;
                         visit[v]=true;
+                        numVisted[i][j]++;
                     }
                     q.push_back(v);
                     //#pragma omp  critical
