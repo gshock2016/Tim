@@ -1,7 +1,7 @@
 #include "head.h"
 
 //int expoMech(double epsilon, CTDFloatArray* weights)
-int expoMech(double epsilon, vector<int> weights)
+int expoMech(int sensitivity, double epsilon, vector<int> weights)
 {
     int i = 0;
 //    int sz = weights->GetSize();
@@ -12,27 +12,26 @@ int expoMech(double epsilon, vector<int> weights)
         return false;
     }
 
-
     double r = 0;
     srand( time(0)); // This will ensure a really randomized number by help of time.
     r = rand();
     r = r/RAND_MAX; // r is a number between 0 and 1
 
 
-    double sensitivity = 1;
+//    double sensitivity = 1;
 
     // maxWeights is needed for normalizing
-    float maxWeights = 0;
-    for (i = 0; i < sz; ++i ){
-//        if (weights->GetAt(i)> maxWeights)
-        if (weights[i] > maxWeights)
-            maxWeights = weights[i];
-    }
+//    float maxWeights = 0;
+//    for (i = 0; i < sz; ++i ){
+////        if (weights->GetAt(i)> maxWeights)
+//        if (weights[i] > maxWeights)
+//            maxWeights = weights[i];
+//    }
 
     // The sum of all weights.
     long double total = 0;
     for (i = 0; i < sz; ++i )
-        total += exp(epsilon * (weights[i]- maxWeights)/(2*sensitivity));
+        total += exp(epsilon * (weights[i])/(2*20));
 
     int index = 0;
     long double prob = 0;
@@ -41,7 +40,7 @@ int expoMech(double epsilon, vector<int> weights)
 
     for (index = 0; index < sz; ++index )
     {
-        prob = exp(epsilon * (weights[index]- maxWeights)/(2*sensitivity));
+        prob = exp(epsilon * (weights[index])/(2*20));
         tProb += prob;
         sum = tProb/total;
         if (r <= sum)
