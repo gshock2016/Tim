@@ -6,8 +6,11 @@ class InfGraph:public Graph
     public:
         vector<vector<int>> hyperG;
 
+        vector<vector<int>> rrset_true;
         //VV hyperG;
         vector<vector<int>> hyperGT;
+
+        vector<vector<int>> rrsetT;
 
 //        vector<vector<int>> infmatrix;
         vector<vector<int>> infAdjList;
@@ -16,6 +19,10 @@ class InfGraph:public Graph
 
         InfGraph(string folder, string graph_file):Graph(folder, graph_file){
             hyperG.clear();
+            for(int i=0; i<n; i++)
+                hyperG.push_back(vector<int>());
+            for(int i=0; i<n; i++)
+                rrset_true.push_back(vector<int>());
             for(int i=0; i<n; i++)
                 hyperG.push_back(vector<int>());
 //            for(int i=0; i<12; i++)
@@ -48,8 +55,17 @@ class InfGraph:public Graph
 
             hyperGT.clear();
 
-            while((int)hyperGT.size() <= R)
-                hyperGT.push_back( vector<int>() );
+            while((int)hyperGT.size() <= R) {
+                hyperGT.push_back(vector<int>());
+            }
+
+            rrsetT.clear();
+
+            while((int)rrsetT.size() <= R) {
+                rrsetT.push_back(vector<int>());
+            }
+
+            cout<<"size: "<<rrsetT.size()<<endl;
 
             for (int i = 0; i < n; i++){
 //                infmatrix.push_back(vector<int>());
@@ -83,6 +99,14 @@ class InfGraph:public Graph
                     totAddedElement++;
                 }
             }
+
+            for(int i=0; i<R; i++){
+                for(int t:rrsetT[i])
+                {
+                    rrset_true[t].push_back(i);
+                }
+            }
+
             ASSERT(hyperId == R);
         }
 
@@ -92,6 +116,7 @@ class InfGraph:public Graph
             {
                 ASSERT((int)hyperGT.size() > hyperiiid);
                 hyperGT[hyperiiid].push_back(uStart);
+                rrsetT[hyperiiid].push_back(uStart);
             }
 
             int n_visit_mark=0;
@@ -117,10 +142,15 @@ class InfGraph:public Graph
                         double randDouble=double(sfmt_genrand_uint32(&sfmtSeed))/double(RAND_MAX)/2;
                         if(randDouble > probT[i][j])
                             continue;
-                        if(visit[v])
-                            continue;
                         if(limit == true && numVisted[i][j] > size_limit)
                             continue;
+                        if(visit[v]){
+                            if(addHyperEdge) {
+                                ASSERT((int) rrsetT.size() > hyperiiid);
+                                rrsetT[hyperiiid].push_back(v);
+                            }
+                            continue;
+                        }
                         if(!visit[v])
                         {
                             ASSERT(n_visit_mark < n);
@@ -136,6 +166,7 @@ class InfGraph:public Graph
                             //hyperG[v].push_back(hyperiiid);
                             ASSERT((int)hyperGT.size() > hyperiiid);
                             hyperGT[hyperiiid].push_back(v);
+                            rrsetT[hyperiiid].push_back(v);
                         }
                     }
                 }
