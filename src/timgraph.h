@@ -65,7 +65,7 @@ class TimGraph: public InfGraph
 
             cout<<"build hypergraph"<<endl;
             BuildHypergraphR(R, islimit, size_limit);
-//            BuildHypergraphR(10);
+//            BuildHypergraphR(10, islimit, size_limit);
             cout<<"R = "<<R<<endl;
             BuildSeedSet(isExpon, size_limit);
         }
@@ -137,9 +137,6 @@ class TimGraph: public InfGraph
  * -------------------------------------------------------
  */
 
-            ofstream myfile;
-            myfile.open ("./output/rrset.csv");
-//            myfile.close();
             int nodeID;
 
             vector<int> infValues;
@@ -147,13 +144,45 @@ class TimGraph: public InfGraph
                 infValues.push_back(0);
             }
 
-            ofstream myfile8;
-            myfile8.open("./output/rrset_true.csv");
-            for(int i = 0; i < (int) rrset_true.size();i++) {
-                myfile8<<i<<", "<<rrset_true[i].size()<<", "<<hyperG[i].size()<<endl;
+//            ofstream myfile;
+//            myfile.open ("./output/hypergt.csv");
+//
+//            for(int i = 0; i < (int) hyperGT.size();i++) {
+//                for(int j =0; j< hyperGT[i].size(); j++){
+//                    myfile<<hyperGT[i][j]<<", ";
+//                }
+//                myfile<<endl;
+//            }
+//            myfile.close();
+//
+//            ofstream myfile8;
+//            myfile8.open("./output/hypergt_dup.csv");
+//            for(int i = 0; i < (int) rrsetT.size();i++) {
+//                for(int j =0; j< rrsetT[i].size(); j++){
+//                    myfile8<<rrsetT[i][j]<<", ";
+//                }
+//                myfile8<<endl;
+//            }
+//            myfile8.close();
+
+            ofstream myfile9;
+            myfile9.open("./output/hyperg.csv");
+            for(int i = 0; i < (int) hyperG.size();i++) {
+                for(int j =0; j< hyperG[i].size(); j++){
+                    myfile9<<hyperG[i][j]<<", ";
+                }
+                myfile9<<endl;
             }
 
-            myfile8.close();
+            ofstream myfile10;
+            myfile10.open("./output/hyperg_dup.csv");
+            for(int i = 0; i < (int) rrset_true.size();i++) {
+                for(int j =0; j< rrset_true[i].size(); j++){
+                    myfile10<<rrset_true[i][j]<<", ";
+                }
+                myfile10<<endl;
+            }
+
 
             ofstream myfile5;
             myfile5.open("./output/numVisted.csv");
@@ -212,7 +241,6 @@ class TimGraph: public InfGraph
                            <<hyperG[gT[i][j]].size()<<", "<<rrset_true[gT[i][j]].size()<<", "<< hyperG[i].size()<<", "
                            <<(dif1.size())<<", "<<(dif2.size())<<", "<<s.size()<<", "
                            <<numVisted[i][j]<<endl;
-
                 }
             }
 
@@ -242,16 +270,16 @@ class TimGraph: public InfGraph
                 for(int j = 0; j < (int) hyperGT[i].size(); j++){
                     nodeID = hyperGT[i][j];
 //                    myfile7<<hyperGT[i][j]<<endl;
-                    myfile <<nodeID<<",";
+//                    myfile <<nodeID<<",";
 //                    cout<<"hello"<<endl;
                     infAdjList[nodeID].push_back(rrsetID);
 //                    infmatrix[nodeID][rrsetID]=1;
 //                    infValues[nodeID] = infValues[nodeID] + 1;
                 }
-                myfile << "\n";
+//                myfile << "\n";
 //                cout<<endl;
             }
-            myfile.close();
+
 
 
             cout<<hyperGT.size()<<endl;

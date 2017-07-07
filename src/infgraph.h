@@ -60,9 +60,13 @@ class InfGraph:public Graph
             }
 
             rrsetT.clear();
-
             while((int)rrsetT.size() <= R) {
                 rrsetT.push_back(vector<int>());
+            }
+
+            rrset_true.clear();
+            while((int)rrset_true.size() <= R) {
+                rrset_true.push_back(vector<int>());
             }
 
             cout<<"size: "<<rrsetT.size()<<endl;
@@ -101,6 +105,7 @@ class InfGraph:public Graph
             }
 
             for(int i=0; i<R; i++){
+//                cout<<"R="<<R<<endl;
                 for(int t:rrsetT[i])
                 {
                     rrset_true[t].push_back(i);
