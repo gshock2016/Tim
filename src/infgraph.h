@@ -15,9 +15,12 @@ class InfGraph:public Graph
 //        vector<vector<int>> infmatrix;
         vector<vector<int>> infAdjList;
 
-        vector<vector<int>> numVisted;
+        vector<vector<vector<int>>> numVisted;
+
 
         InfGraph(string folder, string graph_file):Graph(folder, graph_file){
+
+
             hyperG.clear();
             for(int i=0; i<n; i++)
                 hyperG.push_back(vector<int>());
@@ -25,6 +28,18 @@ class InfGraph:public Graph
                 rrset_true.push_back(vector<int>());
             for(int i=0; i<n; i++)
                 hyperG.push_back(vector<int>());
+
+            for(int i = 0; i < (int) gT.size(); i++){
+                vector<vector<int>> tmp;
+                for(int j = 0; j <(int) gT[i].size(); j++){
+                    tmp.push_back(vector<int>());
+//                    cout<<i<<j<<endl;
+                }
+                numVisted.push_back(tmp);
+            }
+
+            cout<<"finish"<<endl;
+
 //            for(int i=0; i<12; i++)
 //                sfmt_init_gen_rand(&sfmtSeed, i+1234);
             srand( time(0)); // This will ensure a really randomized number by help of time.
@@ -33,12 +48,12 @@ class InfGraph:public Graph
 //        sfmt_init_gen_rand(&sfmtSeed , 95082);
             sfmt_init_gen_rand(&sfmtSeed , xRan);
 
-            numVisted = gT;
-            for(int i=0; i<n; i++){
-                for(int j=0; j< numVisted[i].size(); j++){
-                    numVisted[i][j] = 0;
-                }
-            }
+//            numVisted = gT;
+//            for(int i=0; i<n; i++){
+//                for(int j=0; j< numVisted[i].size(); j++){
+//                    numVisted[i][j] = 0;
+//                }
+//            }
         }
 
         enum ProbModel {TR, WC, TR001};
@@ -69,7 +84,16 @@ class InfGraph:public Graph
                 rrset_true.push_back(vector<int>());
             }
 
-            cout<<"size: "<<rrsetT.size()<<endl;
+            numVisted.clear();
+
+            for(int i = 0; i < (int) gT.size(); i++){
+                vector<vector<int>> tmp;
+                for(int j = 0; j <(int) gT[i].size(); j++){
+                    tmp.push_back(vector<int>());
+//                    cout<<i<<j<<endl;
+                }
+                numVisted.push_back(tmp);
+            }
 
             for (int i = 0; i < n; i++){
 //                infmatrix.push_back(vector<int>());
@@ -91,7 +115,6 @@ class InfGraph:public Graph
                     BuildHypergraphNode(sfmt_genrand_uint32(&sfmtSeed)%n, i, true, false, size_limit);
                 }
             }
-
 
             int totAddedElement=0;
             for(int i=0; i<R; i++){
@@ -147,7 +170,7 @@ class InfGraph:public Graph
                         double randDouble=double(sfmt_genrand_uint32(&sfmtSeed))/double(RAND_MAX)/2;
                         if(randDouble > probT[i][j])
                             continue;
-                        if(limit == true && numVisted[i][j] > size_limit)
+                        if(limit == true && numVisted[i][j].size() > size_limit)
                             continue;
                         if(visit[v]){
                             if(addHyperEdge) {
@@ -161,7 +184,7 @@ class InfGraph:public Graph
                             ASSERT(n_visit_mark < n);
                             visit_mark[n_visit_mark++]=v;
                             visit[v]=true;
-                            numVisted[i][j]++;
+                            numVisted[i][j].push_back(hyperiiid);
                         }
                         q.push_back(v);
                         //#pragma omp  critical 
@@ -170,6 +193,7 @@ class InfGraph:public Graph
                         {
                             //hyperG[v].push_back(hyperiiid);
                             ASSERT((int)hyperGT.size() > hyperiiid);
+//                            hyperGT[hyperiiid].push_back(i);
                             hyperGT[hyperiiid].push_back(v);
                             rrsetT[hyperiiid].push_back(v);
                         }

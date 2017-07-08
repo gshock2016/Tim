@@ -164,97 +164,27 @@ class TimGraph: public InfGraph
 //                myfile8<<endl;
 //            }
 //            myfile8.close();
+//
+//            ofstream myfile9;
+//            myfile9.open("./output/hyperg.csv");
+//            for(int i = 0; i < (int) hyperG.size();i++) {
+//                for(int j =0; j< hyperG[i].size(); j++){
+//                    myfile9<<hyperG[i][j]<<", ";
+//                }
+//                myfile9<<endl;
+//            }
+//
+//            ofstream myfile10;
+//            myfile10.open("./output/hyperg_dup.csv");
+//            for(int i = 0; i < (int) rrset_true.size();i++) {
+//                for(int j =0; j< rrset_true[i].size(); j++){
+//                    myfile10<<rrset_true[i][j]<<", ";
+//                }
+//                myfile10<<endl;
+//            }
 
-            ofstream myfile9;
-            myfile9.open("./output/hyperg.csv");
-            for(int i = 0; i < (int) hyperG.size();i++) {
-                for(int j =0; j< hyperG[i].size(); j++){
-                    myfile9<<hyperG[i][j]<<", ";
-                }
-                myfile9<<endl;
-            }
-
-            ofstream myfile10;
-            myfile10.open("./output/hyperg_dup.csv");
-            for(int i = 0; i < (int) rrset_true.size();i++) {
-                for(int j =0; j< rrset_true[i].size(); j++){
-                    myfile10<<rrset_true[i][j]<<", ";
-                }
-                myfile10<<endl;
-            }
 
 
-            ofstream myfile5;
-            myfile5.open("./output/numVisted.csv");
-
-            for(int i=0; i< numVisted.size(); i++){
-                for(int j = 0; j < numVisted[i].size(); j++){
-//                    myfile5 << i <<", "<< gT[i][j]<< ":"<< numVisted[i][j];
-                    myfile5<<i << ", "<<gT[i][j]<<","<<numVisted[i][j];
-                    myfile5<<"\n";
-                }
-            }
-            myfile5.close();
-
-            ofstream myfile6;
-            myfile6.open("./output/rrset_dif.csv");
-
-            for(int i = 0; i< hyperG.size(); i++){
-                sort(hyperG[i].begin(), hyperG[i].end());
-            }
-            for(int i = 0; i< rrset_true.size(); i++){
-                sort(rrset_true[i].begin(), rrset_true[i].end());
-            }
-
-            for(int i =0; i < gT.size();i++){
-                for(int j =0; j< gT[i].size();j++){
-                    vector<int> dif1(hyperG[gT[i][j]].size());
-                    vector<int> dif2(rrset_true[gT[i][j]].size());
-
-                    vector<int>::iterator it1;
-                    vector<int>::iterator it2;
-//                    set_difference(hyperG[i].begin(), hyperG[i].end(), hyperG[gT[i][j]].begin(), hyperG[gT[i][j]].end(), dif.begin());
-                    it1 = set_difference(hyperG[gT[i][j]].begin(), hyperG[gT[i][j]].end(), hyperG[i].begin(), hyperG[i].end(), dif1.begin());
-                    it2 = set_difference(rrset_true[gT[i][j]].begin(), rrset_true[gT[i][j]].end(), hyperG[i].begin(), hyperG[i].end(), dif2.begin());
-//                    for(int x = 0; x < hyperG[i].size(); x++){
-//                        myfile6<<hyperG[i][x]<<", ";
-//                    }
-//                    myfile6<<endl;
-//                    for(int x = 0; x < hyperG[gT[i][j]].size(); x++){
-//                        myfile6<<hyperG[gT[i][j]][x]<<", ";
-//                    }
-//                    myfile6<<endl;
-//                    for(int x = 0; x < dif.size(); x++){
-//                        myfile6<<dif[x]<<", ";
-//                    }
-//                    myfile6<<endl;
-                    dif1.resize(it1 - dif1.begin());
-                    dif2.resize(it2 - dif2.begin());
-                    set<int> s;
-                    unsigned size = dif2.size();
-//                    for( unsigned i = 0; i < size; ++i )
-//                        s.insert( dif2[i] );
-                    for( unsigned k = 0; k < rrset_true[gT[i][j]].size(); ++k )
-                        s.insert(rrset_true[gT[i][j]][k]);
-
-                    myfile6<<gT[i][j]<< ", "<<i<<","
-                           <<hyperG[gT[i][j]].size()<<", "<<rrset_true[gT[i][j]].size()<<", "<< hyperG[i].size()<<", "
-                           <<(dif1.size())<<", "<<(dif2.size())<<", "<<s.size()<<", "
-                           <<numVisted[i][j]<<endl;
-                }
-            }
-
-            myfile6.close();
-
-            vector<set<int>> v_rrsets;
-            for(int i=0; i< (int) hyperG.size();i++){
-                infValues[i] = hyperG[i].size();
-                set<int> tmpset(hyperG[i].begin(), hyperG[i].end());
-                v_rrsets.push_back(tmpset);
-            }
-
-            ofstream myfile7;
-            myfile7.open("./output/ustart.csv");
             vector<int> ustart_num;
             for (int i = 0; i < n;i++){
                 ustart_num.push_back(0);
@@ -280,15 +210,99 @@ class TimGraph: public InfGraph
 //                cout<<endl;
             }
 
-
-
+            ofstream myfile7;
+            myfile7.open("./output/ustart.csv");
             cout<<hyperGT.size()<<endl;
             for (int i = 0; i < (int) ustart_num.size();i++){
                 myfile7<<i<<", "<<ustart_num[i]<<endl;
 
             }
-
             myfile7.close();
+
+            ofstream myfile5;
+//            myfile5.open("./output/numVisted.csv");
+//
+//            for(int i=0; i< numVisted.size(); i++){
+//                for(int j = 0; j < numVisted[i].size(); j++){
+////                    myfile5 << i <<", "<< gT[i][j]<< ":"<< numVisted[i][j];
+//                    myfile5<<i << ", "<<gT[i][j]<<","<<numVisted[i][j].size();
+//                    myfile5<<"\n";
+//                }
+//            }
+//            myfile5.close();
+
+            ofstream myfile6;
+            myfile6.open("./output/rrset_dif.csv");
+
+            for(int i = 0; i< hyperG.size(); i++){
+                sort(hyperG[i].begin(), hyperG[i].end());
+            }
+            for(int i = 0; i< rrset_true.size(); i++){
+                sort(rrset_true[i].begin(), rrset_true[i].end());
+            }
+
+            for(int i =0; i < gT.size();i++){
+                for(int j =0; j< gT[i].size();j++){
+
+                    for(int k = 0; k < numVisted[i][j].size(); k++){
+                        sort(numVisted[i][j].begin(), numVisted[i][j].end());
+                    }
+
+                    vector<int> dif1(hyperG[i].size());
+                    vector<int> dif2(rrset_true[gT[i][j]].size());
+
+                    vector<int>::iterator it1;
+                    vector<int>::iterator it2;
+//                    set_difference(hyperG[i].begin(), hyperG[i].end(), hyperG[gT[i][j]].begin(), hyperG[gT[i][j]].end(), dif.begin());
+                    it1 = set_difference(hyperG[i].begin(), hyperG[i].end(), hyperG[gT[i][j]].begin(), hyperG[gT[i][j]].end(), dif1.begin());
+                    it2 = set_difference(rrset_true[gT[i][j]].begin(), rrset_true[gT[i][j]].end(), numVisted[i][j].begin(), numVisted[i][j].end(),  dif2.begin());
+
+//                    for(int x = 0; x < hyperG[i].size(); x++){
+//                        myfile6<<hyperG[i][x]<<", ";
+//                    }
+//                    myfile6<<endl;
+//                    for(int x = 0; x < hyperG[gT[i][j]].size(); x++){
+//                        myfile6<<hyperG[gT[i][j]][x]<<", ";
+//                    }
+//                    myfile6<<endl;
+//                    for(int x = 0; x < dif.size(); x++){
+//                        myfile6<<dif[x]<<", ";
+//                    }
+//                    myfile6<<endl;
+                    dif1.resize(it1 - dif1.begin());
+
+                    dif2.resize(it2 - dif2.begin());
+
+                    set<int> s1;
+//                    unsigned size = dif2.size();
+//                    for( unsigned i = 0; i < size; ++i )
+//                        s.insert( dif2[i] );
+                    for( unsigned k = 0; k < rrset_true[gT[i][j]].size(); ++k )
+                        s1.insert(rrset_true[gT[i][j]][k]);
+                    set<int> s2;
+                    for( unsigned k = 0; k < dif2.size(); ++k )
+                        s2.insert(dif2[k]);
+
+                    assert(hyperG[gT[i][j]].size() == s1.size());
+                    myfile6<<gT[i][j]<< ", "<<i<<","
+                           <<hyperG[gT[i][j]].size()<<", "<<rrset_true[gT[i][j]].size()<<", "<<s1.size()<<", "
+                           <<hyperG[i].size()<<", "<<dif2.size()<<","
+                           <<hyperG[gT[i][j]].size() - s2.size()<<", " <<numVisted[i][j].size()<<", "
+                           <<ustart_num[i]<<endl;
+                }
+            }
+
+            myfile6.close();
+
+            vector<set<int>> v_rrsets;
+            for(int i=0; i< (int) hyperG.size();i++){
+                infValues[i] = hyperG[i].size();
+                set<int> tmpset(hyperG[i].begin(), hyperG[i].end());
+                v_rrsets.push_back(tmpset);
+            }
+
+
+
 
             ofstream myfile2;
             myfile2.open("./output/infvalue.csv");
