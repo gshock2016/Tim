@@ -13,10 +13,10 @@ int expoMech(int sensitivity, double epsilon, vector<int> weights)
     }
 
     double r = 0;
-    srand( time(0)); // This will ensure a really randomized number by help of time.
+//    srand( time(0)); // This will ensure a really randomized number by help of time.
     r = rand();
     r = r/RAND_MAX; // r is a number between 0 and 1
-
+    cout<<"r= "<<r<<endl;
 
 //    double sensitivity = 1;
 
@@ -31,19 +31,23 @@ int expoMech(int sensitivity, double epsilon, vector<int> weights)
     // The sum of all weights.
     long double total = 0;
     for (i = 0; i < sz; ++i )
-        total += exp(epsilon * (weights[i])/(2*20));
+        total += exp(epsilon * (weights[i])/(200.0));
+
+    cout<<total<<endl;
 
     int index = 0;
     long double prob = 0;
     long double tProb = 0;
     double sum = 0;
 
-    for (index = 0; index < sz; ++index )
-    {
-        prob = exp(epsilon * (weights[index])/(2*20));
+    for (index = 0; index < sz; index++ ){
+        cout<<"weights = "<<weights[index]<<endl;
+        prob = exp(epsilon * (weights[index])/(200.0));
         tProb += prob;
         sum = tProb/total;
+        cout<<prob<<endl;
         if (r <= sum)
+            cout<<prob<<endl;
             return index;
     }
 

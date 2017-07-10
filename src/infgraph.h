@@ -170,8 +170,8 @@ class InfGraph:public Graph
                         double randDouble=double(sfmt_genrand_uint32(&sfmtSeed))/double(RAND_MAX)/2;
                         if(randDouble > probT[i][j])
                             continue;
-                        if(limit == true && numVisted[i][j].size() > size_limit)
-                            continue;
+//                        if(limit == true && numVisted[i][j].size() > size_limit)
+//                            continue;
                         if(visit[v]){
                             if(addHyperEdge) {
                                 ASSERT((int) rrsetT.size() > hyperiiid);
@@ -262,17 +262,19 @@ class InfGraph:public Graph
 
                 if (isExpon == 1) {
                     id = expoMech(size_limit, 0.1, degree);
-                    cout<<"expon_"<<i<<" = "<<id<<","<<"degree = "<< hyperG[id].size()<<endl;
+                    cout<<"expon_"<<i<<" = "<<id<<","<<"degree = "<< degree[id]<<endl;
                 }
                 if(isExpon == 0){
                     //Returns an iterator pointing to the element with the largest value in the range [first,last).
                     auto t=max_element(degree.begin(), degree.end());
                     // id is the index of the node with largest degree
                     id = t-degree.begin();
-                    cout<<"greedy_"<<i<<" = "<<id<<","<<"degree = "<< hyperG[id].size()<<endl;
+                    cout<<"greedy_"<<i<<" = "<<id<<","<<"degree = "<< degree[id]<<endl;
                 }
                 seedSet.insert(id);
+                cout<<i<<" = "<<id<<","<<"degree = "<< degree[id]<<endl;
                 degree[id]=0;
+
                 // t is the index of rrset
                 for(int t:hyperG[id]){
                     if(!visit_local[t]){
