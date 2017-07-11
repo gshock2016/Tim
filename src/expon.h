@@ -1,9 +1,10 @@
 #include "head.h"
+#include "math.h"
 
 //int expoMech(double epsilon, CTDFloatArray* weights)
 int expoMech(int sensitivity, double epsilon, vector<int> weights)
 {
-    int i = 0;
+//    int i = 0;
 //    int sz = weights->GetSize();
     int sz = weights.size();
     if (sz == 0) {
@@ -11,44 +12,59 @@ int expoMech(int sensitivity, double epsilon, vector<int> weights)
         ASSERT(false);
         return false;
     }
+    cout<<"***************************"<<endl;
 
-    double r = 0;
 //    srand( time(0)); // This will ensure a really randomized number by help of time.
-    r = rand();
+    long double r = rand();
     r = r/RAND_MAX; // r is a number between 0 and 1
     cout<<"r= "<<r<<endl;
 
-//    double sensitivity = 1;
+    double sense = 0.5;
 
     // maxWeights is needed for normalizing
-//    float maxWeights = 0;
-//    for (i = 0; i < sz; ++i ){
-////        if (weights->GetAt(i)> maxWeights)
-//        if (weights[i] > maxWeights)
-//            maxWeights = weights[i];
-//    }
+    int maxWeights = 0;
+    for (int i = 0; i < sz; i++ ){
+//        if (weights->GetAt(i)> maxWeights)
+        if (weights[i] > maxWeights)
+            maxWeights = weights[i];
+    }
+
+    cout<<"maxWeights = "<<maxWeights<<endl;
 
     // The sum of all weights.
     long double total = 0;
-    for (i = 0; i < sz; ++i )
-        total += exp(epsilon * (weights[i])/(200.0));
-
-    cout<<total<<endl;
+    cout<<"total: "<<total<<endl;
+    for (int i = 0; i < sz; i++ ) {
+        if(weights[i] > 0) {
+            cout << "weights[i]:" << weights[i]<< endl;
+            cout << "weights[i] -  maxWeights:" << weights[i] - maxWeights << endl;
+            cout << "exp(...): " << exp(epsilon * (weights[i] - maxWeights) / 2.0 * sense) << endl;
+//            total = total + exp(epsilon * (weights[i] - maxWeights) / (2 * sense));
+            total = total + exp(epsilon * (weights[i]) / (2 * sense));
+            cout << "total: " << total << endl;
+        }
+    }
 
     int index = 0;
     long double prob = 0;
     long double tProb = 0;
-    double sum = 0;
+    long double sum = 0;
 
     for (index = 0; index < sz; index++ ){
-        cout<<"weights = "<<weights[index]<<endl;
-        prob = exp(epsilon * (weights[index])/(200.0));
-        tProb += prob;
-        sum = tProb/total;
-        cout<<prob<<endl;
-        if (r <= sum)
-            cout<<prob<<endl;
-            return index;
+        if(weights[index] > 0) {
+            cout << index << "_weight = " << weights[index] << endl;
+//            prob = exp(epsilon * (weights[index] - maxWeights) / (2 * sense));
+            prob = exp(epsilon * (weights[index]) / (2 * sense));
+            cout << "prob: " << prob << endl;
+            tProb += prob;
+            cout << "tprob: " << tProb << endl;
+            sum = tProb / total;
+            cout << "r: " << r << ", sum: " << sum << endl;
+            if (r <= sum) {
+                cout << "prob: " << prob << endl;
+                return index;
+            }
+        }
     }
 
     if (index == sz) {

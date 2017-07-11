@@ -252,8 +252,10 @@ class InfGraph:public Graph
             seedSet.clear();
             for(int i=0; i<n; i++)
             {
-                degree.push_back( hyperG[i].size() );
-                //degree.push_back( hyperG.size(i) );
+//                degree.push_back( hyperG[i].size() );
+
+                degree.push_back( n * hyperG[i].size()/hyperId );
+
             }
             ASSERT(k > 0);
             ASSERT(k < (int)degree.size());
@@ -261,8 +263,8 @@ class InfGraph:public Graph
                 int id = 0;
 
                 if (isExpon == 1) {
-                    id = expoMech(size_limit, 0.1, degree);
-                    cout<<"expon_"<<i<<" = "<<id<<","<<"degree = "<< degree[id]<<endl;
+                    id = expoMech(size_limit, 0.5, degree);
+//                    cout<<"expon_"<<i<<" = "<<id<<","<<"degree = "<< degree[id]<<endl;
                 }
                 if(isExpon == 0){
                     //Returns an iterator pointing to the element with the largest value in the range [first,last).
@@ -272,8 +274,7 @@ class InfGraph:public Graph
                     cout<<"greedy_"<<i<<" = "<<id<<","<<"degree = "<< degree[id]<<endl;
                 }
                 seedSet.insert(id);
-                cout<<i<<" = "<<id<<","<<"degree = "<< degree[id]<<endl;
-                degree[id]=0;
+                cout<<i<<" : "<<id<<","<<"degree = "<< degree[id]<<endl;
 
                 // t is the index of rrset
                 for(int t:hyperG[id]){
@@ -284,11 +285,13 @@ class InfGraph:public Graph
                         }
                     }
                 }
+                degree[id]=0;
             }
         }
         double InfluenceHyperGraph(){
 
             set<int> s;
+            cout<<"seedset:" <<seedSet.size()<<endl;
             for(auto t:seedSet){
                 for(auto tt:hyperG[t]){
                 //for(int index=hyperG.head[t]; index!=-1; index=hyperG.next[index]){
