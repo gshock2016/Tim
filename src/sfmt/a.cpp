@@ -1,4 +1,4 @@
-#include "/home/tyz/code/head.h"
+#include "../head.h"
 #include "SFMT.h"
 #define BLOCK_SIZE 100000
 #define BLOCK_SIZE64 50000

@@ -70,11 +70,26 @@ class Graph
             fclose(fin);
         }
 
-        Graph(string folder, string graph_file):folder(folder), graph_file(graph_file){
-            readNM();
+        void readGraphwProb(){
+            FILE * fin= fopen((graph_file).c_str(), "r");
+            //ASSERT(fin != false);
+            int readCnt=0;
 
+            set<int> nodes;
+
+            int a, b, x;
+            while(fscanf(fin, "%d%d%lf", &a, &b, &x) != EOF){
+                cout<<a<<", "<<b<<endl;
+                nodes.insert(a);
+                nodes.insert(b);
+                readCnt ++;
+            }
+            n = nodes.size();
+            m = readCnt;
+            visit_mark=vector<int>(n);
+            visit=vector<bool>(n);
             //init vector
-            FOR(i, n){
+            for(int i =0; i< n; i++){
                 gT.push_back(vector<int>());
                 hasnode.push_back(false);
                 probT.push_back(vector<double>());
@@ -82,8 +97,49 @@ class Graph
                 inDeg.push_back(0);
             }
 
-            readGraph();
+            readCnt = 0;
+            for(int i=0; i<m; i++){
+                readCnt ++;
+                int a, b, x;
+                double p = rand();
+                p = p/RAND_MAX; // r is a number between 0 and 1
+                cout<<"p= "<<p<<endl;
+                rewind(fin);
+                int c=fscanf(fin, "%d%d%lf", &a, &b, &x);
+//                ASSERT(c==2);
+//                ASSERTT(c==2, a, b, c);
+
+                ASSERT( a<n );
+                ASSERT( b<n );
+                hasnode[a]=true;
+                hasnode[b]=true;
+                add_edge(a, b, p);
+            }
+            if(readCnt !=m) {
+                cout<<m<<", "<<readCnt<<endl;
+                ExitMessage("m not equal to the number of edges in file " + graph_file);
+            }
+            fclose(fin);
         }
+
+//        Graph(string folder, string graph_file):folder(folder), graph_file(graph_file){
+//            readNM();
+//
+//            //init vector
+//            FOR(i, n){
+//                gT.push_back(vector<int>());
+//                hasnode.push_back(false);
+//                probT.push_back(vector<double>());
+//                //hyperGT.push_back(vector<int>());
+//                inDeg.push_back(0);
+//            }
+//
+//            readGraph();
+//        }
+
+    Graph(string folder, string graph_file):folder(folder), graph_file(graph_file){
+        readGraphwProb();
+    }
 
 };
 double sqr(double t)

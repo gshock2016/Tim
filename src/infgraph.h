@@ -103,6 +103,8 @@ class InfGraph:public Graph
 //                    infmatrix[i].push_back(0);
             }
 
+
+
             if(limit == true){
                 for(int i=0; i<R; i++){
                     BuildHypergraphNode(sfmt_genrand_uint32(&sfmtSeed)%n, i, true, true, size_limit);
@@ -140,6 +142,7 @@ class InfGraph:public Graph
 
         int BuildHypergraphNode(int uStart, int hyperiiid, bool addHyperEdge, bool limit, int size_limit){
             int n_visit_edge=1;
+
             if(addHyperEdge)
             {
                 ASSERT((int)hyperGT.size() > hyperiiid);
@@ -154,8 +157,10 @@ class InfGraph:public Graph
             q.clear();
             q.push_back(uStart);
             ASSERT(n_visit_mark < n);
+
             visit_mark[n_visit_mark++]=uStart;
             visit[uStart]=true;
+
             while(!q.empty()) {
                 int expand=q.front();
                 q.pop_front();

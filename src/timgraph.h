@@ -11,6 +11,7 @@ class TimGraph: public InfGraph
             //TRACE_LINE("mgt", i);
             ASSERT(u>=0);
             ASSERT(u<n);
+
             return (double)BuildHypergraphNode(u, 0, false, false, 0);
         }
         double algo2(){
@@ -36,9 +37,12 @@ class TimGraph: public InfGraph
         }
         double KptEstimation()
         {
+
+
             Timer t(1, "step1");
             double ept=algo2();
             ept/=2;
+
             return ept;
         }
         void RefindKPT(double epsilon, double ept){
@@ -144,44 +148,44 @@ class TimGraph: public InfGraph
                 infValues.push_back(0);
             }
 
-//            ofstream myfile;
-//            myfile.open ("./output/hypergt.csv");
-//
-//            for(int i = 0; i < (int) hyperGT.size();i++) {
-//                for(int j =0; j< hyperGT[i].size(); j++){
-//                    myfile<<hyperGT[i][j]<<", ";
-//                }
-//                myfile<<endl;
-//            }
-//            myfile.close();
-//
-//            ofstream myfile8;
-//            myfile8.open("./output/hypergt_dup.csv");
-//            for(int i = 0; i < (int) rrsetT.size();i++) {
-//                for(int j =0; j< rrsetT[i].size(); j++){
-//                    myfile8<<rrsetT[i][j]<<", ";
-//                }
-//                myfile8<<endl;
-//            }
-//            myfile8.close();
-//
-//            ofstream myfile9;
-//            myfile9.open("./output/hyperg.csv");
-//            for(int i = 0; i < (int) hyperG.size();i++) {
-//                for(int j =0; j< hyperG[i].size(); j++){
-//                    myfile9<<hyperG[i][j]<<", ";
-//                }
-//                myfile9<<endl;
-//            }
-//
-//            ofstream myfile10;
-//            myfile10.open("./output/hyperg_dup.csv");
-//            for(int i = 0; i < (int) rrset_true.size();i++) {
-//                for(int j =0; j< rrset_true[i].size(); j++){
-//                    myfile10<<rrset_true[i][j]<<", ";
-//                }
-//                myfile10<<endl;
-//            }
+            ofstream myfile;
+            myfile.open ("./output/hypergt.csv");
+
+            for(int i = 0; i < (int) hyperGT.size();i++) {
+                for(int j =0; j< hyperGT[i].size(); j++){
+                    myfile<<hyperGT[i][j]<<", ";
+                }
+                myfile<<endl;
+            }
+            myfile.close();
+
+            ofstream myfile8;
+            myfile8.open("./output/hypergt_dup.csv");
+            for(int i = 0; i < (int) rrsetT.size();i++) {
+                for(int j =0; j< rrsetT[i].size(); j++){
+                    myfile8<<rrsetT[i][j]<<", ";
+                }
+                myfile8<<endl;
+            }
+            myfile8.close();
+
+            ofstream myfile9;
+            myfile9.open("./output/hyperg.csv");
+            for(int i = 0; i < (int) hyperG.size();i++) {
+                for(int j =0; j< hyperG[i].size(); j++){
+                    myfile9<<hyperG[i][j]<<", ";
+                }
+                myfile9<<endl;
+            }
+
+            ofstream myfile10;
+            myfile10.open("./output/hyperg_dup.csv");
+            for(int i = 0; i < (int) rrset_true.size();i++) {
+                for(int j =0; j< rrset_true[i].size(); j++){
+                    myfile10<<rrset_true[i][j]<<", ";
+                }
+                myfile10<<endl;
+            }
 
 
 
