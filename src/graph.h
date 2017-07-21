@@ -45,6 +45,7 @@ class Graph
             probT[b].push_back(p);
             gT[b].push_back(a);
             inDeg[b]++;
+            cout<<a<<", "<<b<<", "<<p<<endl;
         }
         vector<bool> hasnode;
         void readGraph(){
@@ -79,7 +80,6 @@ class Graph
 
             int a, b, x;
             while(fscanf(fin, "%d%d%lf", &a, &b, &x) != EOF){
-                cout<<a<<", "<<b<<endl;
                 nodes.insert(a);
                 nodes.insert(b);
                 readCnt ++;
@@ -103,7 +103,7 @@ class Graph
                 int a, b, x;
                 double p = rand();
                 p = p/RAND_MAX; // r is a number between 0 and 1
-                cout<<"p= "<<p<<endl;
+                p = 1;
                 rewind(fin);
                 int c=fscanf(fin, "%d%d%lf", &a, &b, &x);
 //                ASSERT(c==2);

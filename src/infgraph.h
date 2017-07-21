@@ -171,13 +171,14 @@ class InfGraph:public Graph
                         int v=gT[i][j];
 /*************************************visted edges***************************************************/
                         n_visit_edge++;
-
+                        printf("i = %")
                         double randDouble=double(sfmt_genrand_uint32(&sfmtSeed))/double(RAND_MAX)/2;
                         if(randDouble > probT[i][j])
                             continue;
 //                        if(limit == true && numVisted[i][j].size() > size_limit)
 //                            continue;
                         if(visit[v]){
+
                             if(addHyperEdge) {
                                 ASSERT((int) rrsetT.size() > hyperiiid);
                                 rrsetT[hyperiiid].push_back(v);
@@ -186,6 +187,7 @@ class InfGraph:public Graph
                         }
                         if(!visit[v])
                         {
+//                            cout<<"prob: "<<probT[i][j]<<endl;
                             ASSERT(n_visit_mark < n);
                             visit_mark[n_visit_mark++]=v;
                             visit[v]=true;
@@ -257,9 +259,9 @@ class InfGraph:public Graph
             seedSet.clear();
             for(int i=0; i<n; i++)
             {
-//                degree.push_back( hyperG[i].size() );
+                degree.push_back( hyperG[i].size() );
 
-                degree.push_back( n * hyperG[i].size()/hyperId );
+//                degree.push_back( n * hyperG[i].size()/hyperId );
 
             }
             ASSERT(k > 0);

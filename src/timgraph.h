@@ -68,8 +68,8 @@ class TimGraph: public InfGraph
             int64 R = (8+2 * epsilon) * ( log(n) + log(2) +  n * logcnk(n, k) ) / ( epsilon * epsilon * opt);
 
             cout<<"build hypergraph"<<endl;
-            BuildHypergraphR(R, islimit, size_limit);
-//            BuildHypergraphR(10, islimit, size_limit);
+//            BuildHypergraphR(R, islimit, size_limit);
+            BuildHypergraphR(10, islimit, size_limit);
             cout<<"R = "<<R<<endl;
             BuildSeedSet(isExpon, size_limit);
         }
