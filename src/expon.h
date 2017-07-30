@@ -2,7 +2,7 @@
 #include "math.h"
 
 //int expoMech(double epsilon, CTDFloatArray* weights)
-int expoMech(int sensitivity, double epsilon, vector<int> weights)
+int expoMech(double r, int sensitivity, double epsilon, vector<int> weights)
 {
 //    int i = 0;
 //    int sz = weights->GetSize();
@@ -14,12 +14,9 @@ int expoMech(int sensitivity, double epsilon, vector<int> weights)
     }
     cout<<"***************************"<<endl;
 
-//    srand( time(0)); // This will ensure a really randomized number by help of time.
-    long double r = rand();
-    r = r/RAND_MAX; // r is a number between 0 and 1
     cout<<"r= "<<r<<endl;
 
-    double sense = 0.5;
+    double sense = 300;
 
     // maxWeights is needed for normalizing
     int maxWeights = 0;
